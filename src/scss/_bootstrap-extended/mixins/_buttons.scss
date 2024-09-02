@@ -56,7 +56,6 @@
       color: $hover-color;
       @include gradient-bg($hover-background);
       border-color: $hover-border;
-      box-shadow: none;
     }
 
     .btn-check:checked + &,
@@ -70,10 +69,15 @@
       // Remove CSS gradients if they're enabled
       background-image: if($enable-gradients, none !important, null);
       border-color: $active-border !important;
+    }
 
-      &:focus {
-        box-shadow: none;
-      }
+    &.disabled,
+    &:disabled {
+      color: $color !important;
+      background-color: $background !important;
+      // Remove CSS gradients if they're enabled
+      background-image: if($enable-gradients, none !important, null);
+      border-color: $border !important;
     }
   }
 
@@ -123,42 +127,50 @@
   $active-color: $color;
 
   #{$parent} {
-    color: $color;
-    border-color: $border-color;
-    background: transparent;
-    &.waves-effect {
-      .waves-ripple {
-        background: radial-gradient(
-          rgba($color, 0.2) 0,
-          rgba($color, 0.3) 40%,
-          rgba($color, 0.4) 50%,
-          rgba($color, 0.5) 60%,
-          rgba($white, 0) 70%
-        );
+    & {
+      color: $color;
+      border-color: $color;
+      background: transparent;
+      &.waves-effect {
+        .waves-ripple {
+          background: radial-gradient(
+            rgba($color, 0.2) 0,
+            rgba($color, 0.3) 40%,
+            rgba($color, 0.4) 50%,
+            rgba($color, 0.5) 60%,
+            rgba($white, 0) 70%
+          );
+        }
       }
-    }
 
-    &:hover {
-      color: $color-hover !important;
-      background-color: $hover-background !important;
-      border-color: $border-color !important;
-    }
+      &:hover {
+        color: $color-hover !important;
+        background-color: $hover-background !important;
+        border-color: $color !important;
+      }
 
-    .btn-check:focus + &,
-    &:focus {
-      color: $color-hover;
-      background-color: $focus-background;
-      border-color: $active-border;
-    }
+      .btn-check:focus + &,
+      &:focus {
+        color: $color-hover;
+        background-color: $focus-background;
+        border-color: $color;
+      }
 
-    .btn-check:checked + &,
-    .btn-check:active + &,
-    &:active,
-    &.active,
-    &.dropdown-toggle.show {
-      color: $active-color !important;
-      background-color: $active-background !important;
-      border-color: $active-border !important;
+      .btn-check:checked + &,
+      .btn-check:active + &,
+      &:active,
+      &.active,
+      &.dropdown-toggle.show {
+        color: $active-color !important;
+        background-color: $active-background !important;
+        border-color: $color !important;
+      }
+
+      &.disabled,
+      &:disabled {
+        color: $color !important;
+        background-color: transparent !important;
+      }
     }
   }
 

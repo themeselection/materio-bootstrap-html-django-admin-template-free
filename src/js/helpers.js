@@ -735,10 +735,10 @@ const Helpers = {
 
           if (formPasswordToggleInput.getAttribute('type') === 'text') {
             formPasswordToggleInput.setAttribute('type', 'password')
-            formPasswordToggleIcon.classList.replace('mdi-eye-outline', 'mdi-eye-off-outline')
+            formPasswordToggleIcon.classList.replace('ri-eye-line', 'ri-eye-off-line')
           } else if (formPasswordToggleInput.getAttribute('type') === 'password') {
             formPasswordToggleInput.setAttribute('type', 'text')
-            formPasswordToggleIcon.classList.replace('mdi-eye-off-outline', 'mdi-eye-outline')
+            formPasswordToggleIcon.classList.replace('ri-eye-off-line', 'ri-eye-line')
           }
         })
       })
@@ -891,4 +891,5 @@ if (typeof window !== 'undefined') {
 }
 
 // ---
+window.Helpers = Helpers
 export { Helpers }
