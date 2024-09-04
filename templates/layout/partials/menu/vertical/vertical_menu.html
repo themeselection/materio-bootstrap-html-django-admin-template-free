@@ -4,13 +4,13 @@
   <div class="app-brand demo">
     <a href="{% url 'index' %}" class="app-brand-link">
       <span class="app-brand-logo demo me-1">
-        {% include 'partials/logo.html' with bgcolor="#9055FD" %}
+        {% include 'partials/logo.html' %}
       </span>
       <span class="app-brand-text demo menu-text fw-semibold ms-2">{% get_theme_variables 'template_name' %}</span>
     </a>
 
-    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-      <i class="mdi menu-toggle-icon d-xl-block align-middle"></i>
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+      <i class="menu-toggle-icon d-xl-block align-middle"></i>
     </a>
   </div>
   {% endif %}
@@ -22,7 +22,7 @@
 
     <li class="menu-item {% if 'index' == request.resolver_match.url_name or '/dashbord/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+        <i class="menu-icon tf-icons ri-home-smile-line"></i>
         <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
         <span class="badge bg-danger rounded-pill ms-auto">5</span>
       </a>
@@ -30,7 +30,7 @@
         <li class="menu-item">
           <a href="{% get_theme_variables 'live_preview' %}dashboard/crm/" class="menu-link" target="_blank">
             <div class="text-truncate" data-i18n="CRM">CRM</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
           </a>
         </li>
         <li class="menu-item {% if 'index' == request.resolver_match.url_name %}active{% endif %}">
@@ -41,19 +41,19 @@
         <li class="menu-item">
           <a href="{% get_theme_variables 'live_preview' %}app/ecommerce/dashboard/" class="menu-link" target="_blank">
             <div class="text-truncate" data-i18n="eCommerce">eCommerce</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
           </a>
         </li>
         <li class="menu-item">
           <a href="{% get_theme_variables 'live_preview' %}app/logistics/dashboard/" class="menu-link" target="_blank">
             <div class="text-truncate" data-i18n="Logistics">Logistics</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
           </a>
         </li>
         <li class="menu-item">
           <a href="{% get_theme_variables 'live_preview' %}app/academy/dashboard/" class="menu-link" target="_blank">
             <div class="text-truncate" data-i18n="Academy">Academy</div>
-            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+            <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
           </a>
         </li>
       </ul>
@@ -61,7 +61,7 @@
     <!-- Layouts -->
     <li class="menu-item {% if '/layouts/' in request.path  %}active open{% endif %}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+        <i class="menu-icon tf-icons ri-layout-2-line"></i>
         <div class="text-truncate" data-i18n="Layouts">Layouts</div>
       </a>
       <ul class="menu-sub">
@@ -95,7 +95,7 @@
     <!-- Front Pages -->
     <li class="menu-item">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class='menu-icon tf-icons mdi mdi-flip-to-front'></i>
+        <i class='menu-icon tf-icons ri-file-copy-line'></i>
         <div class="text-truncate" data-i18n="Front Pages">Front Pages</div>
         <div class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</div>
       </a>
@@ -130,48 +130,48 @@
 
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}transactions/list/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-database-outline"></i>
+        <i class="menu-icon tf-icons ri-database-2-line"></i>
         <div class="text-truncate" data-i18n="Transactions (CRUD)">Transactions (CRUD)</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
 
-    <li class="menu-header fw-medium mt-4">
+    <li class="menu-header fw-medium mt-7">
       <span class="menu-header-text">Apps &amp; Pages</span>
     </li>
 
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}app/email/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
+        <i class="menu-icon tf-icons ri-mail-open-line"></i>
         <div class="text-truncate" data-i18n="Email">Email</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}app/chat/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-message-outline"></i>
+        <i class="menu-icon tf-icons ri-wechat-line"></i>
         <div class="text-truncate" data-i18n="Chat">Chat</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}app/calendar/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-calendar-blank-outline"></i>
+        <i class="menu-icon tf-icons ri-calendar-line"></i>
         <div class="text-truncate" data-i18n="Calendar">Calendar</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}app/kanban/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-view-grid-outline"></i>
+        <i class="menu-icon tf-icons ri-drag-drop-line"></i>
         <div class="text-truncate" data-i18n="Kanban">Kanban</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
     <!-- Account -->
     <li class="menu-item {% if '/account_settings/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+        <i class="menu-icon tf-icons ri-user-line"></i>
         <div class="text-truncate" data-i18n="Account Settings">Account Settings</div>
       </a>
       <ul class="menu-sub">
@@ -195,7 +195,7 @@
     <!-- Auth -->
     <li class="menu-item {% if '/auth/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-lock-open-outline"></i>
+        <i class="menu-icon tf-icons ri-shield-keyhole-line"></i>
         <div class="text-truncate" data-i18n="Authentications">Authentications</div>
       </a>
       <ul class="menu-sub">
@@ -219,7 +219,7 @@
     <!-- Misc -->
     <li class="menu-item {% if '/misc/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
+        <i class="menu-icon tf-icons ri-box-3-line"></i>
         <div class="text-truncate" data-i18n="Misc">Misc</div>
       </a>
       <ul class="menu-sub">
@@ -236,20 +236,20 @@
       </ul>
     </li>
 
-    <li class="menu-header fw-medium mt-4">
+    <li class="menu-header fw-medium mt-7">
       <span class="menu-header-text">Components</span>
     </li>
 
     <li class="menu-item {% if '/cards/basic/' in request.path %}active{% endif %}">
       <a href="{% url 'cards-basic' %}" class="menu-link">
-        <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i>
+        <i class="menu-icon tf-icons ri-bank-card-2-line"></i>
         <div class="text-truncate" data-i18n="Card">Card</div>
       </a>
     </li>
     <!-- UI -->
     <li class="menu-item {% if '/ui/' in request.path %}active open{% endif %}">
       <a href=" javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-archive-outline"></i>
+        <i class="menu-icon tf-icons ri-toggle-line"></i>
         <div class="text-truncate" data-i18n="User interface">User interface</div>
       </a>
       <ul class="menu-sub">
@@ -295,7 +295,7 @@
         </li>
         <li class="menu-item {% if '/list_groups/' in request.path %}active{% endif %}">
           <a href="{% url 'ui-list-groups' %}" class="menu-link">
-            <div class="text-truncate" data-i18n="List Groups">List groups</div>
+            <div class="text-truncate" data-i18n="List Groups">List Groups</div>
           </a>
         </li>
         <li class="menu-item {% if '/modals/' in request.path %}active{% endif %}">
@@ -340,7 +340,7 @@
         </li>
         <li class="menu-item {% if '/tooltips_popovers/' in request.path %}active{% endif %}">
           <a href="{% url 'ui-tooltips-popovers' %}" class="menu-link">
-            <div class="text-truncate" data-i18n="Tooltips & Popovers">Tooltips &amp; popovers</div>
+            <div class="text-truncate" data-i18n="Tooltips & Popovers">Tooltips &amp; Popovers</div>
           </a>
         </li>
         <li class="menu-item {% if '/typography/' in request.path %}active{% endif %}">
@@ -353,7 +353,7 @@
     <!-- Extended UI -->
     <li class="menu-item {% if '/extended_ui/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-star-outline"></i>
+        <i class="menu-icon tf-icons ri-box-3-line"></i>
         <div class="text-truncate" data-i18n="Extended UI">Extended UI</div>
       </a>
       <ul class="menu-sub">
@@ -370,21 +370,21 @@
       </ul>
     </li>
     <!-- Icons -->
-    <li class="menu-item {% if '/mdi/' in request.path %}active{% endif %}">
-      <a href="{% url 'icons-mdi' %}" class="menu-link">
-        <i class="menu-icon tf-icons mdi mdi-google-circles-extended"></i>
+    <li class="menu-item {% if '/ri/' in request.path %}active{% endif %}">
+      <a href="{% url 'icons-ri' %}" class="menu-link">
+        <i class="menu-icon tf-icons ri-remixicon-line"></i>
         <div class="text-truncate" data-i18n="Icons">Icons</div>
       </a>
     </li>
 
-    <li class="menu-header fw-medium mt-4">
+    <li class="menu-header fw-medium mt-7">
       <span class="menu-header-text">Forms &amp; Tables</span>
     </li>
 
     <!-- Form -->
     <li class="menu-item {% if '/forms/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-form-select"></i>
+        <i class="menu-icon tf-icons ri-radio-button-line"></i>
         <div class="text-truncate" data-i18n="Form Elements">Form Elements</div>
       </a>
       <ul class="menu-sub">
@@ -404,7 +404,7 @@
     <!-- Form Layouts -->
     <li class="menu-item {% if '/form/' in request.path %}active open{% endif %}">
       <a href="javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons mdi mdi-cube-outline"></i>
+        <i class="menu-icon tf-icons ri-box-3-line"></i>
         <div class="text-truncate" data-i18n="Form Elements">Form Layouts</div>
       </a>
       <ul class="menu-sub">
@@ -423,39 +423,39 @@
 
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}form/validation/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-checkbox-marked-circle-outline"></i>
+        <i class="menu-icon tf-icons ri-checkbox-multiple-line"></i>
         <div class="text-truncate" data-i18n="Form Validation">Form Validation</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
 
     <li class="menu-item {% if '/tables/basic/' in request.path %}active{% endif %}">
       <a href="{% url 'tables-basic' %}" class="menu-link">
-        <i class="menu-icon tf-icons mdi mdi-table"></i>
+        <i class="menu-icon tf-icons ri-table-alt-line"></i>
         <div class="text-truncate" data-i18n="Tables">Tables</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="{% get_theme_variables 'live_preview' %}tables/datatables_basic/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-grid"></i>
+        <i class="menu-icon tf-icons ri-grid-line"></i>
         <div class="text-truncate" data-i18n="Datatables">Datatables</div>
-        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">PRO</span>
+        <span class="badge bg-label-primary fs-tiny rounded-pill ms-auto">Pro</span>
       </a>
     </li>
 
-    <li class="menu-header fw-medium mt-4">
+    <li class="menu-header fw-medium mt-7">
       <span class="menu-header-text">Misc</span>
     </li>
 
     <li class="menu-item">
       <a href="https://themeselection.com/support/" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-lifebuoy"></i>
+        <i class="menu-icon tf-icons ri-lifebuoy-line"></i>
         <div class="text-truncate" data-i18n="Support">Support</div>
       </a>
     </li>
     <li class="menu-item">
       <a href="https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/django-introduction.html" class="menu-link" target="_blank">
-        <i class="menu-icon tf-icons mdi mdi-file-document-multiple-outline"></i>
+        <i class="menu-icon tf-icons ri-article-line"></i>
         <div class="text-truncate" data-i18n="Documentation">Documentation</div>
       </a>
     </li>
