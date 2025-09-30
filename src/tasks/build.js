@@ -7,6 +7,7 @@ const exec = require('gulp-exec');
 const gulpIf = require('gulp-if');
 const sourcemaps = require('gulp-sourcemaps');
 const browserSync = require('browser-sync').create();
+const useref = require('gulp-useref');
 const webpack = require('webpack');
 const log = require('fancy-log');
 const colors = require('ansi-colors');
@@ -16,10 +17,13 @@ module.exports = (conf, srcGlob) => {
   // Build CSS
   // -------------------------------------------------------------------------------
   const buildCssTask = function (cb) {
+    const sassCommand = `sass --load-path=node_modules/ scss:${conf.distPath}/css fonts:${conf.distPath}/fonts libs:${conf.distPath}/libs`;
+    const sassCommandWithMinify = `${sassCommand} --style compressed --no-source-map`;
+    const sassCommandWithoutSourceMap = `${sassCommand} --no-source-map`;
+
     return src(srcGlob('**/*.scss', '!**/_*.scss'))
       .pipe(gulpIf(conf.sourcemaps, sourcemaps.init()))
       .pipe(
-        // If sass is installed on your local machine, it will use command line to compile sass else it will use dart sass npm which 3 time slower
         gulpIf(
           localSass,
           exec(
@@ -42,7 +46,6 @@ module.exports = (conf, srcGlob) => {
         )
       )
       .pipe(gulpIf(conf.sourcemaps, sourcemaps.write()))
-
       .pipe(
         rename(function (path) {
           path.dirname = path.dirname.replace('scss', 'css');
@@ -66,7 +69,6 @@ module.exports = (conf, srcGlob) => {
       .pipe(gulpIf(conf.sourcemaps, sourcemaps.write()))
       .pipe(dest(conf.distPath + '/css'))
       .pipe(browserSync.stream());
-    cb();
   };
 
   // Build JS
@@ -115,43 +117,6 @@ module.exports = (conf, srcGlob) => {
     }, 1);
   };
 
-  // Build fonts
-  // -------------------------------------------------------------------------------
-
-  const FONT_TASKS = [
-    {
-      name: 'remixicon',
-      path: [
-        'node_modules/remixicon/fonts/remixicon.eot',
-        'node_modules/remixicon/fonts/remixicon.ttf',
-        'node_modules/remixicon/fonts/remixicon.woff',
-        'node_modules/remixicon/fonts/remixicon.woff2',
-        'node_modules/remixicon/fonts/remixicon.svg'
-      ]
-    },
-    {
-      name: 'flags',
-      path: 'node_modules/flag-icons/flags/**/*'
-    }
-  ].reduce(function (tasks, font) {
-    const functionName = `buildFonts${font.name.replace(/^./, m => m.toUpperCase())}Task`;
-    const taskFunction = function () {
-      // return src(root(font.path))
-      return (
-        src(font.path)
-          // .pipe(dest(normalize(path.join(conf.distPath, 'fonts', font.name))))
-          .pipe(dest(path.join(conf.distPath, 'fonts', font.name)))
-      );
-    };
-
-    Object.defineProperty(taskFunction, 'name', {
-      value: functionName
-    });
-
-    return tasks.concat([taskFunction]);
-  }, []);
-
-  const buildFontsTask = parallel(FONT_TASKS);
   // Copy
   // -------------------------------------------------------------------------------
 
@@ -172,7 +137,35 @@ module.exports = (conf, srcGlob) => {
     ).pipe(dest(conf.distPath));
   };
 
-  const buildAllTask = series(buildCssTask, buildJsTask, buildFontsTask, buildCopyTask);
+  // Iconify task
+  // -------------------------------------------------------------------------------
+  const buildIconifyTask = function (cb) {
+    // Create required directories without copying files
+    const fs = require('fs');
+    const directories = ['./fonts/iconify', './assets/vendor/fonts', './dist/fonts'];
+
+    directories.forEach(dir => {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+    });
+
+    const iconify = require('child_process').spawn('node', ['./fonts/iconify/iconify.js']);
+
+    iconify.stdout.on('data', data => {
+      console.log(data.toString());
+    });
+
+    iconify.stderr.on('data', data => {
+      console.error(data.toString());
+    });
+
+    iconify.on('close', code => {
+      cb();
+    });
+  };
+
+  const buildAllTask = series(buildCssTask, buildJsTask, buildCopyTask, buildIconifyTask);
 
   // Exports
   // ---------------------------------------------------------------------------
@@ -180,8 +173,8 @@ module.exports = (conf, srcGlob) => {
   return {
     css: series(buildCssTask, buildAutoprefixCssTask),
     js: buildJsTask,
-    fonts: buildFontsTask,
     copy: buildCopyTask,
+    iconify: buildIconifyTask,
     all: buildAllTask
   };
 };
