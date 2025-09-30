@@ -47,7 +47,7 @@
     "editor.defaultFormatter": "HookyQR.beautify"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -69,16 +69,12 @@
     "django-html": "html"
   },
   "beautify.language": {
-    "html": [
-      "htm",
-      "html",
-      "django-html"
-    ]
+    "html": ["htm", "html", "django-html"]
   },
   // Extension: Git
   "git.rebaseWhenSync": true,
   "git.enableSmartCommit": true,
   "eslint.format.enable": true,
   // Extension: npm
-  "npm.packageManager": "yarn",
+  "npm.packageManager": "yarn"
 }
